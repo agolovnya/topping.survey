@@ -102,7 +102,7 @@ class ToppingControllerIntgTest : WithPostgreSQLTestContainer() {
 
     @Test
     fun toppingVotes_valid_success() {
-        val email = "artemgolovnya@coherentsolutions.com"
+        val email = "ag@coh.com"
         val toppingsEntityList = toppingsEntityList()
         val customer = Customer(UuidUtils.getUuid(email), email, toppingsEntityList.filter { it.name == "peperoni" })
         customerRepository.save(customer)

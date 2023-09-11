@@ -24,11 +24,11 @@ class CustomerControllerUnitTest {
 
     @Test
     fun save_valid_success() {
-        val customerDTO = CustomerDTO("artemgolovnya@coherentsolutions.com", listOf("PEPERONI", "KJLMK"))
+        val customerDTO = CustomerDTO("ag@coh.com", listOf("PEPERONI", "KJLMK"))
 
         every {
             customerServiceMokk.save(any())
-        } returns CustomerDTO("artemgolovnya@coherentsolutions.com", listOf("peperoni"))
+        } returns CustomerDTO("ag@coh.com", listOf("peperoni"))
 
         val savedCustomerDTO = webTestClient
             .post()
@@ -41,7 +41,7 @@ class CustomerControllerUnitTest {
             .responseBody
 
         assertNotNull(savedCustomerDTO)
-        assertEquals("artemgolovnya@coherentsolutions.com", savedCustomerDTO?.email)
+        assertEquals("ag@coh.com", savedCustomerDTO?.email)
         assertEquals(listOf("peperoni"), savedCustomerDTO?.toppings)
     }
 
@@ -81,12 +81,12 @@ class CustomerControllerUnitTest {
 
     @Test
     fun getCustomerByEmail_valid_success() {
-        val email = "artemgolovnya@coherentsolutions.com"
+        val email = "ag@coh.com"
         val uri = UriComponentsBuilder.fromUriString("/v1/customer/by/email")
             .queryParam("email", email)
             .toUriString()
 
-        val customerDTO = CustomerDTO("artemgolovnya@coherentsolutions.com", listOf("peperoni"))
+        val customerDTO = CustomerDTO("ag@coh.com", listOf("peperoni"))
         every {
             customerServiceMokk.getCustomerByEmail(email)
         } returns customerDTO

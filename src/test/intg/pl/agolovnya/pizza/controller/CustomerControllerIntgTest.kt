@@ -44,7 +44,7 @@ class CustomerControllerIntgTest : WithPostgreSQLTestContainer() {
     @Test
     fun save_valid_success() {
         val toppings = toppingRepository.findAll()
-        val customerDTO = CustomerDTO("artemgolovnya@coherentsolutions.com", toppings.map { it.name })
+        val customerDTO = CustomerDTO("ag@coh.com", toppings.map { it.name })
         val savedCourseDTO = webTestClient
             .post()
             .uri("/v1/customer")
@@ -60,7 +60,7 @@ class CustomerControllerIntgTest : WithPostgreSQLTestContainer() {
 
     @Test
     fun getCustomerByEmail_valid_success() {
-        val email = "artemgolovnya@coherentsolutions.com"
+        val email = "ag@coh.com"
         val uri = UriComponentsBuilder.fromUriString("/v1/customer/by/email")
             .queryParam("email", email)
             .toUriString()
