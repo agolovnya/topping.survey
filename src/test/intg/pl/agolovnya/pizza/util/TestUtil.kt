@@ -4,6 +4,7 @@ import pl.agolovnya.pizza.entity.Customer
 import pl.agolovnya.pizza.entity.Topping
 import java.util.*
 
+@Suppress("unused")
 enum class BasicToppings {
     PEPERONI,
     ONION,

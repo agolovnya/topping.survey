@@ -65,7 +65,7 @@ class ToppingControllerUnitTest {
     @Test
     fun retrieveAllToppings_noParam_success() {
         every {
-            toppingServiceMokk.retrieveToppings(any())
+            toppingServiceMokk.list(any())
         } returns listOf(ToppingDTO("peperoni"))
 
         val savedToppings = webTestClient
@@ -89,7 +89,7 @@ class ToppingControllerUnitTest {
             .queryParam("toppingName", toppingName)
             .toUriString()
         every {
-            toppingServiceMokk.retrieveToppings(toppingName)
+            toppingServiceMokk.list(toppingName)
         } returns listOf(ToppingDTO(toppingName))
 
         val savedToppings = webTestClient

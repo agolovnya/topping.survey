@@ -47,9 +47,7 @@ class CustomerServiceTest(
 
         val result = subject.save(customerDTO)
 
-        assertEquals(newCustomer.let {
-            CustomerDTO(it.email, toppings.map { t -> t.name })
-        }, result)
+        assertEquals(CustomerDTO(newCustomer.email, toppings.map { t -> t.name }), result)
         verify { toppingService.findToppings(listOf(toppingName)) }
         verify { customerRepository.findById(getUuid(customerDTO.email)) }
         verify { customerRepository.save(newCustomer) }
@@ -75,9 +73,7 @@ class CustomerServiceTest(
 
         val result = subject.save(customerDTO)
 
-        assertEquals(newCustomer.let {
-            CustomerDTO(it.email, toppings.map { t -> t.name })
-        }, result)
+        assertEquals(CustomerDTO(newCustomer.email, toppings.map { t -> t.name }), result)
         verify { toppingService.findToppings(listOf(toppingName)) }
         verify { customerRepository.findById(getUuid(customerDTO.email)) }
         verify { customerRepository.save(newCustomer) }
@@ -93,9 +89,7 @@ class CustomerServiceTest(
 
         val result = subject.individual(email)
 
-        assertEquals(customer.let {
-            CustomerDTO(it.email, listOf())
-        }, result)
+        assertEquals(CustomerDTO(customer.email, listOf()), result)
         verify { customerRepository.findById(getUuid(email)) }
     }
 

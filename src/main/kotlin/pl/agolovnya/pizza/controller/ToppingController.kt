@@ -6,7 +6,6 @@ import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import pl.agolovnya.pizza.dto.ToppingDTO
 import pl.agolovnya.pizza.dto.ToppingStatDTO
-import pl.agolovnya.pizza.service.ToppingService
 import pl.agolovnya.pizza.service.api.IToppingService
 
 @RestController
@@ -20,12 +19,9 @@ class ToppingController(val toppingService: IToppingService) {
      * @param toppingDTO topping information
      * @return toppingDTO topping stored in database
      */
-    @PostMapping()
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun save(@RequestBody @Valid toppingDTO: ToppingDTO): ToppingDTO {
-
-        return toppingService.save(toppingDTO)
-    }
+    fun save(@RequestBody @Valid toppingDTO: ToppingDTO): ToppingDTO = toppingService.save(toppingDTO)
 
     /**
      * Allows to retrieve all OR specific topping from DB
@@ -39,8 +35,7 @@ class ToppingController(val toppingService: IToppingService) {
             "toppingName",
             required = false
         ) toppingName: String?
-    ): List<ToppingDTO> =
-        toppingService.retrieveToppings(toppingName)
+    ): List<ToppingDTO> = toppingService.list(toppingName)
 
     /**
      * Allows to retrieve toppings statistic, i.e. votes for a given topping

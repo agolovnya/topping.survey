@@ -24,7 +24,7 @@ interface IToppingService {
      * @param toppingName optional topping name to find
      * @return list of toppings
      */
-    fun retrieveToppings(toppingName: String?): List<ToppingDTO>
+    fun list(toppingName: String?): List<ToppingDTO>
 
     /**
      * Allows to retrieve topping name to vote statistic

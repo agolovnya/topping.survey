@@ -8,6 +8,7 @@ import pl.agolovnya.pizza.entity.Topping
 import pl.agolovnya.pizza.repository.ToppingRepository
 import pl.agolovnya.pizza.service.api.IToppingService
 import pl.agolovnya.pizza.util.UuidUtils.Companion.getUuid
+import kotlin.jvm.optionals.getOrNull
 
 @Service
 class ToppingService(val toppingRepository: ToppingRepository) : IToppingService {
@@ -32,17 +33,13 @@ class ToppingService(val toppingRepository: ToppingRepository) : IToppingService
         toppingRepository.save(topping)
         logger.info("ToppingService.save topping=$topping saved to DB")
 
-        return topping.let { ToppingDTO(it.name) }
+        return ToppingDTO(topping.name)
     }
 
-    override fun retrieveToppings(toppingName: String?): List<ToppingDTO> {
+    override fun list(toppingName: String?): List<ToppingDTO> {
         val toppings = toppingName?.let {
-            val toppingOpt = toppingRepository.findById(getUuid(toppingName))
-            if (toppingOpt.isPresent) {
-                listOf(toppingOpt.get())
-            } else {
-                listOf()
-            }
+            val dbTopping = toppingRepository.findById(getUuid(toppingName)).getOrNull()
+            dbTopping?.let { listOf(it) } ?: listOf()
         } ?: toppingRepository.findAll()
 
         return toppings.map {

@@ -23,12 +23,9 @@ class CustomerController(val customerService: ICustomerService) {
      * @param customerDTO customer information
      * @return customerDTO stored in database
      */
-    @PostMapping()
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun save(@RequestBody @Valid customerDTO: CustomerDTO): CustomerDTO {
-
-        return customerService.save(customerDTO)
-    }
+    fun save(@RequestBody @Valid customerDTO: CustomerDTO): CustomerDTO = customerService.save(customerDTO)
 
     /**
      * Special endpoint to list toppings choice by email
@@ -43,8 +40,5 @@ class CustomerController(val customerService: ICustomerService) {
             message = "email is not valid",
             regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$"
         ) email: String
-    ): CustomerDTO? {
-
-        return customerService.individual(email)
-    }
+    ): CustomerDTO? = customerService.individual(email)
 }

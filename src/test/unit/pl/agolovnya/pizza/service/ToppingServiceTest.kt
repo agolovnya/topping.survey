@@ -34,7 +34,7 @@ class ToppingServiceTest(
         val toppingIds = listOf(getUuid(toppingName))
         every {
             toppingRepository.findAllById(toppingIds)
-        } returns listOf(toppingDTO.let { Topping(getUuid(toppingName), toppingName, listOf()) })
+        } returns listOf(Topping(getUuid(toppingName), toppingName, listOf()))
 
 
         val result = subject.save(toppingDTO)
@@ -74,7 +74,7 @@ class ToppingServiceTest(
             toppingRepository.findAll()
         } returns listOf(dbTopping)
 
-        val result = subject.retrieveToppings(null)
+        val result = subject.list(null)
 
         assertEquals(listOf(ToppingDTO(toppingName)), result)
         verify { toppingRepository.findAll() }
@@ -89,7 +89,7 @@ class ToppingServiceTest(
             toppingRepository.findById(toppingId)
         } returns Optional.of(dbTopping)
 
-        val result = subject.retrieveToppings(toppingName)
+        val result = subject.list(toppingName)
 
         assertEquals(listOf(ToppingDTO(toppingName)), result)
         verify { toppingRepository.findById(toppingId) }
@@ -103,7 +103,7 @@ class ToppingServiceTest(
             toppingRepository.findById(toppingId)
         } returns Optional.empty()
 
-        val result = subject.retrieveToppings(toppingName)
+        val result = subject.list(toppingName)
 
         assertEquals(listOf<ToppingDTO>(), result)
         verify { toppingRepository.findById(toppingId) }

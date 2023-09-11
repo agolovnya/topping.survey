@@ -61,7 +61,7 @@ class ToppingControllerIntgTest : WithPostgreSQLTestContainer() {
             .returnResult()
             .responseBody
 
-        assertEquals(newTopping.let { ToppingDTO(it.name) }, savedToppingDTO)
+        assertEquals(ToppingDTO(newTopping.name), savedToppingDTO)
     }
 
     @Test
