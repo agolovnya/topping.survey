@@ -4,14 +4,20 @@
 
 #### Using Docker compose
 
-- The docker compose file is present in this folder: docker
+- The docker compose file for postgres: [docker-compose.yml](docker/docker-compose.yml)
 
-- Run the below command to spin up Postgres Instance
+- Run the below command from /docker folder to spin up Postgres Instance
 
 ```
 docker-compose up
 ```
 ### 2. Test dataset
-Here you can find initial setup for toppings
+#### Using swagger-ui
+After application startup all available api can be found here: http://localhost:8080/swagger-ui/index.html. You can play with it directly from browser.
+
+![img.png](img.png)
+
+#### Using predefined http collections
+Here you can find initial setup for toppings (it was used for testing)
 [initialToppingsSetup.http](src/main/resources/initialToppingsSetup.http)
-All available api can be found here: http://localhost:8080/swagger-ui/index.html
+
