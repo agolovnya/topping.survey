@@ -1,0 +1,87 @@
+POST http://localhost:8080/v1/topping
+Content-Type: application/json
+
+{
+  "name": "peperoni"
+}
+
+###
+
+POST http://localhost:8080/v1/topping
+Content-Type: application/json
+
+{
+  "name": "onion"
+}
+
+###
+
+POST http://localhost:8080/v1/topping
+Content-Type: application/json
+
+{
+  "name": "pepper"
+}
+
+###
+
+POST http://localhost:8080/v1/topping
+Content-Type: application/json
+
+{
+  "name": "salami"
+}
+
+###
+
+POST http://localhost:8080/v1/topping
+Content-Type: application/json
+
+{
+  "name": "cheese"
+}
+
+###
+
+POST http://localhost:8080/v1/customer
+Content-Type: application/json
+
+{
+  "email": "ag@coh.com",
+  "toppings": [
+    "cheese"
+  ]
+}
+
+###
+
+POST http://localhost:8080/v1/customer
+Content-Type: application/json
+
+{
+  "email": "ak@coh.com",
+  "toppings": [
+    "onion",
+    "cheese"
+  ]
+}
+
+###
+
+GET http://localhost:8080/v1/topping/stats
+Content-Type: application/json
+
+###
+
+GET http://localhost:8080/v1/customer/by/email?email=ag@coh.com
+Content-Type: application/json
+
+###
+
+GET http://localhost:8080/v1/customer/by/email?email=ak@coh.com
+Content-Type: application/json
+
+###
+
+GET http://localhost:8080/v1/customer/by/email?email=sad@fff.com
+Content-Type: application/json
