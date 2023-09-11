@@ -84,14 +84,14 @@ class CustomerServiceTest(
     }
 
     @Test
-    fun getCustomerByEmail_customerFound_success() {
+    fun individual_customerFound_success() {
         val email = "ag@coh.com"
         val customer = Customer(getUuid(email), email, listOf())
         every {
             customerRepository.findById(getUuid(email))
         } returns Optional.of(customer)
 
-        val result = subject.getCustomerByEmail(email)
+        val result = subject.individual(email)
 
         assertEquals(customer.let {
             CustomerDTO(it.email, listOf())
@@ -100,14 +100,14 @@ class CustomerServiceTest(
     }
 
     @Test
-    fun getCustomerByEmail_customerNotFound_null() {
+    fun individual_customerNotFound_null() {
         val email = "ag@coh.com"
         val customer = Customer(getUuid(email), email, listOf())
         every {
             customerRepository.findById(getUuid(email))
         } returns Optional.empty()
 
-        val result = subject.getCustomerByEmail(email)
+        val result = subject.individual(email)
 
         assertEquals(null, result)
         verify { customerRepository.findById(getUuid(email)) }

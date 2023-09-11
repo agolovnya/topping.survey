@@ -59,9 +59,9 @@ class CustomerControllerIntgTest : WithPostgreSQLTestContainer() {
     }
 
     @Test
-    fun getCustomerByEmail_valid_success() {
+    fun individual_valid_success() {
         val email = "ag@coh.com"
-        val uri = UriComponentsBuilder.fromUriString("/v1/customer/by/email")
+        val uri = UriComponentsBuilder.fromUriString("/v1/customer/email")
             .queryParam("email", email)
             .toUriString()
 

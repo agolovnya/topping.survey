@@ -73,15 +73,15 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8080/v1/customer/by/email?email=ag@coh.com
+GET http://localhost:8080/v1/customer/email?email=ag@coh.com
 Content-Type: application/json
 
 ###
 
-GET http://localhost:8080/v1/customer/by/email?email=ak@coh.com
+GET http://localhost:8080/v1/customer/email?email=ak@coh.com
 Content-Type: application/json
 
 ###
 
-GET http://localhost:8080/v1/customer/by/email?email=sad@fff.com
+GET http://localhost:8080/v1/customer/email?email=sad@fff.com
 Content-Type: application/json

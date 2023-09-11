@@ -35,8 +35,8 @@ class CustomerController(val customerService: ICustomerService) {
      *
      * @param email customer email
      */
-    @GetMapping("/by/email")
-    fun getCustomerByEmail(
+    @GetMapping("/email")
+    fun individual(
         @RequestParam("email")
         @Valid
         @Email(
@@ -45,6 +45,6 @@ class CustomerController(val customerService: ICustomerService) {
         ) email: String
     ): CustomerDTO? {
 
-        return customerService.getCustomerByEmail(email)
+        return customerService.individual(email)
     }
 }

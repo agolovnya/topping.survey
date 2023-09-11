@@ -80,15 +80,15 @@ class CustomerControllerUnitTest {
     }
 
     @Test
-    fun getCustomerByEmail_valid_success() {
+    fun individual_valid_success() {
         val email = "ag@coh.com"
-        val uri = UriComponentsBuilder.fromUriString("/v1/customer/by/email")
+        val uri = UriComponentsBuilder.fromUriString("/v1/customer/email")
             .queryParam("email", email)
             .toUriString()
 
         val customerDTO = CustomerDTO("ag@coh.com", listOf("peperoni"))
         every {
-            customerServiceMokk.getCustomerByEmail(email)
+            customerServiceMokk.individual(email)
         } returns customerDTO
 
         val responseCourseDTO = webTestClient
@@ -104,9 +104,9 @@ class CustomerControllerUnitTest {
     }
 
     @Test
-    fun getCustomerByEmail_notValidEmail_validationException() {
+    fun individual_notValidEmail_validationException() {
         val email = "artemgolovnya.com"
-        val uri = UriComponentsBuilder.fromUriString("/v1/customer/by/email")
+        val uri = UriComponentsBuilder.fromUriString("/v1/customer/email")
             .queryParam("email", email)
             .toUriString()
 
@@ -119,6 +119,6 @@ class CustomerControllerUnitTest {
             .returnResult()
             .responseBody
 
-        assertEquals("getCustomerByEmail.email: email is not valid", response)
+        assertEquals("individual.email: email is not valid", response)
     }
 }
