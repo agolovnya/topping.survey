@@ -13,4 +13,4 @@ docker-compose up
 ```
 ### 2. Test dataset
 Here you can find initial setup for toppings
-[initialToppingsSetup.http](src%2Fmain%2Fresources%2FinitialToppingsSetup.http)/src/main/kotlin[resources](src%2Fmain%2Fresources)/
+[initialToppingsSetup.http](src/main/resources/initialToppingsSetup.http)
