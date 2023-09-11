@@ -91,7 +91,7 @@ class CustomerServiceTest(
             customerRepository.findById(getUuid(email))
         } returns Optional.of(customer)
 
-        val result = subject.getCustomerByEmail(email)
+        val result = subject.individual(email)
 
         assertEquals(customer.let {
             CustomerDTO(it.email, listOf())
@@ -107,7 +107,7 @@ class CustomerServiceTest(
             customerRepository.findById(getUuid(email))
         } returns Optional.empty()
 
-        val result = subject.getCustomerByEmail(email)
+        val result = subject.individual(email)
 
         assertEquals(null, result)
         verify { customerRepository.findById(getUuid(email)) }

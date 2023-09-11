@@ -34,7 +34,7 @@ class CustomerService(val customerRepository: CustomerRepository, val toppingSer
         }
     }
 
-    override fun getCustomerByEmail(email: String): CustomerDTO? {
+    override fun individual(email: String): CustomerDTO? {
         val customerOpt = customerRepository.findById(getUuid(email))
         return if (customerOpt.isPresent) {
             val customer = customerOpt.get()

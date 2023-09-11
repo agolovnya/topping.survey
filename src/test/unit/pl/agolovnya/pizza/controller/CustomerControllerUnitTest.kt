@@ -82,13 +82,13 @@ class CustomerControllerUnitTest {
     @Test
     fun getCustomerByEmail_valid_success() {
         val email = "ag@coh.com"
-        val uri = UriComponentsBuilder.fromUriString("/v1/customer/by/email")
+        val uri = UriComponentsBuilder.fromUriString("/v1/customer/email")
             .queryParam("email", email)
             .toUriString()
 
         val customerDTO = CustomerDTO("ag@coh.com", listOf("peperoni"))
         every {
-            customerServiceMokk.getCustomerByEmail(email)
+            customerServiceMokk.individual(email)
         } returns customerDTO
 
         val responseCourseDTO = webTestClient
@@ -106,7 +106,7 @@ class CustomerControllerUnitTest {
     @Test
     fun getCustomerByEmail_notValidEmail_validationException() {
         val email = "artemgolovnya.com"
-        val uri = UriComponentsBuilder.fromUriString("/v1/customer/by/email")
+        val uri = UriComponentsBuilder.fromUriString("/v1/customer/email")
             .queryParam("email", email)
             .toUriString()
 

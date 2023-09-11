@@ -18,4 +18,8 @@ data class Topping(
     override fun toString(): String {
         return "Topping(id=$id, name=$name, customers=[${customers.map { it.email }}])"
     }
+
+    override fun equals(other: Any?): Boolean = other is Topping && other.name == name
+
+    override fun hashCode(): Int = name.hashCode()
 }

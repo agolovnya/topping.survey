@@ -15,5 +15,5 @@ interface ICustomerService {
      * @param email customer email
      * @return customerDTO if found
      */
-    fun getCustomerByEmail(email: String): CustomerDTO?
+    fun individual(email: String): CustomerDTO?
 }
