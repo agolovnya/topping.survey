@@ -54,4 +54,62 @@ class CustomerServiceTest(
         verify { customerRepository.findById(getUuid(customerDTO.email)) }
         verify { customerRepository.save(newCustomer) }
     }
+
+    @Test
+    fun save_customerNotFound_success() {
+        val toppingName = "peperoni"
+        val email = "ag@coh.com"
+        val toppings = listOf(Topping(getUuid(toppingName), toppingName, listOf()))
+        every {
+            toppingService.findToppings(listOf(toppingName))
+        } returns toppings
+        val customer = Customer(getUuid(email), email, listOf())
+        every {
+            customerRepository.findById(getUuid(email))
+        } returns Optional.empty()
+        val newCustomer = Customer(getUuid(email), email, toppings)
+        every {
+            customerRepository.save(newCustomer)
+        } returns newCustomer
+        val customerDTO = CustomerDTO(email, listOf(toppingName))
+
+        val result = subject.save(customerDTO)
+
+        assertEquals(newCustomer.let {
+            CustomerDTO(it.email, toppings.map { t -> t.name })
+        }, result)
+        verify { toppingService.findToppings(listOf(toppingName)) }
+        verify { customerRepository.findById(getUuid(customerDTO.email)) }
+        verify { customerRepository.save(newCustomer) }
+    }
+
+    @Test
+    fun getCustomerByEmail_customerFound_success() {
+        val email = "ag@coh.com"
+        val customer = Customer(getUuid(email), email, listOf())
+        every {
+            customerRepository.findById(getUuid(email))
+        } returns Optional.of(customer)
+
+        val result = subject.getCustomerByEmail(email)
+
+        assertEquals(customer.let {
+            CustomerDTO(it.email, listOf())
+        }, result)
+        verify { customerRepository.findById(getUuid(email)) }
+    }
+
+    @Test
+    fun getCustomerByEmail_customerNotFound_null() {
+        val email = "ag@coh.com"
+        val customer = Customer(getUuid(email), email, listOf())
+        every {
+            customerRepository.findById(getUuid(email))
+        } returns Optional.empty()
+
+        val result = subject.getCustomerByEmail(email)
+
+        assertEquals(null, result)
+        verify { customerRepository.findById(getUuid(email)) }
+    }
 }
