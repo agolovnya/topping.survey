@@ -15,7 +15,7 @@ docker-compose up
 #### Using swagger-ui
 After application startup all available api can be found here: http://localhost:8080/swagger-ui/index.html. You can play with it directly from browser.
 
-![img.png](img.png)
+![swagger-api.png](doc/asset/swagger-api.png)
 
 #### Using predefined http collections
 Here you can find initial setup for toppings (it was used for testing)
